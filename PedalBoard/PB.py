@@ -1,18 +1,19 @@
-from pedalboard import Pedalboard, Chorus, Reverb
+from pedalboard import Pedalboard, Chorus, Reverb, Delay
 from pedalboard.io import AudioFile
 
 
 #test
-'''
+
 
 # Make a Pedalboard object, containing multiple audio plugins:
-board = Pedalboard([Chorus(), Reverb(room_size=0.25)])
+board = Pedalboard([Chorus(), Reverb(room_size=0.50),
+                   Delay(delay_seconds=0.08, mix=0.5)])
 
 # Open an audio file for reading, just like a regular file:
-with AudioFile('some-file.wav') as f:
+with AudioFile('output.wav') as f:
 
   # Open an audio file to write to:
-  with AudioFile('output.wav', 'w', f.samplerate, f.num_channels) as o:
+  with AudioFile('outputFour.wav', 'w', f.samplerate, f.num_channels) as o:
 
     # Read one second of audio at a time, until the file is empty:
     while f.tell() < f.frames:
@@ -23,5 +24,3 @@ with AudioFile('some-file.wav') as f:
 
       # Write the output to our output file:
       o.write(effected)
-
-      '''
