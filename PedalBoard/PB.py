@@ -10,7 +10,7 @@ board = Pedalboard([Chorus(), Reverb(room_size=0.50),
                    Delay(delay_seconds=0.08, mix=0.5)])
 
 # Open an audio file for reading, just like a regular file:
-with AudioFile('output.wav') as f:
+with AudioFile('shri_new.wav') as f:
 
   # Open an audio file to write to:
   with AudioFile('outputFour.wav', 'w', f.samplerate, f.num_channels) as o:
