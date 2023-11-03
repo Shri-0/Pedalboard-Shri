@@ -33,10 +33,10 @@ effect.par15 = 5.00
 
 # effected = effect(file)
 
-with AudioFile('sineStereo.wav') as f:
+with AudioFile('test_message.wav') as f:
 
     # Open an audio file to write to:
-    with AudioFile('sineAmend.wav', 'w', f.samplerate, f.num_channels) as o:
+    with AudioFile('Test_Two.wav', 'w', f.samplerate, f.num_channels) as o:
 
         # Read one second of audio at a time, until the file is empty:
         while f.tell() < f.frames:
