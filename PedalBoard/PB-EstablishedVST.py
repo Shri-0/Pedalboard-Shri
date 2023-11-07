@@ -9,6 +9,8 @@ from mido import Message
 instrument = load_plugin(
     "/Library/Audio/Plug-Ins/Components/Addictive Keys.component")
 
+instrument.show_editor()
+
 # dict_keys(['modulation_x', 'ch1_level', 'ch2_level', 'ch3_level', 'ch1_sendfx1', 'ch1_sendfx2', 'ch2_sendfx1', 'ch2_sendfx2', 'ch3_sendfx1', 'ch3_sendfx2', 'fx1_level', 'fx2_level', 'master_level', 'master_filtlo', 'master_filthi'])
 
 
@@ -19,10 +21,24 @@ SketchCassetteEffect = load_plugin(
     "/Library/Audio/Plug-Ins/Components/SketchCassette II.component")
 # dict_keys(['input_gain', 'output_gain', 'comp_dry_wet', 'dropout_intensity', 'flutter_rate', 'comp_amount', 'tape_quality', 'wow_rate', 'saturation_type', 'flutter_offset', 'wow_offset', 'age', 'flutter_rhythm', 'comp_brightness', 'wow_rhythm', 'dropout_depth', 'flutter_depth', 'flutter_shape', 'flanging', 'tape_hiss', 'nr_comp', 'tape_dry_wet', 'wow_depth', 'wow_shape', 'wow_flutter_mode', 'dropout_width', 'tape_type', 'tempo_sync', 'saturation'])
 
+SketchCassetteEffect.show_editor()
+print(SketchCassetteEffect.flutter_rate)
+print(SketchCassetteEffect.tape_quality)
+print(SketchCassetteEffect.age)
+print(SketchCassetteEffect.output_gain)
+
+
 # Valhalla Frequency Echo
 ValhallaFreqEchoeffect = load_plugin(
     "/Library/Audio/Plug-Ins/Components/ValhallaFreqEcho.component")
 # dict_keys(['wetdry', 'shift', 'delay', 'sync', 'feedback', 'lowcut', 'highcut', 'stereo'])
+
+ValhallaFreqEchoeffect.show_editor()
+print(ValhallaFreqEchoeffect.wetdry)
+print(ValhallaFreqEchoeffect.delay)
+print(ValhallaFreqEchoeffect.sync)
+print(ValhallaFreqEchoeffect.stereo)
+
 
 
 '''
