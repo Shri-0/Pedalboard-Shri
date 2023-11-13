@@ -45,5 +45,9 @@ with AudioStream(
 
     input("Press enter to stop streaming...")
 
+
+
+
+
 print(input_device_name)
 print(output_device_name)
