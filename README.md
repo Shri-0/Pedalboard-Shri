@@ -10,4 +10,4 @@ A.  Results so far: Can successsfully plot sinewaves through matplotlib, but not
 B.  3rd Party Established VSTs need testing (not sure if possible with Live Audio at the moment)
 C.  Live Audiostream feature needs to be coded and tested - Update: Can route audio out from synth into interface, and can adjust audio as necessary in pedalboard when start button is hit
 
-D. Will need to graphically analyze and plot sounds generated from the PedalBoard folders
+D. Will need to graphically analyze and plot sounds generated from PedalBoard session folder
