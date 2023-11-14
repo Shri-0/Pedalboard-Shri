@@ -13,7 +13,9 @@ obj = wave.open("testing_change.wav", "rb")
 sample_freq = obj.getframerate()
 n_samples = obj.getnframes()
 signal_wave = obj.readframes(-1)
+signal_wave_freq = obj.readframes(n_samples)
 obj.close()
+
 t_audio = n_samples / sample_freq
 
 # print(t_audio)
@@ -21,6 +23,7 @@ t_audio = n_samples / sample_freq
 
 signal_array = np.frombuffer(signal_wave, dtype=np.int16)  # y
 times = np.linspace(0, t_audio, num=n_samples*2)  # x
+
 # times = np.linspace(0, t_audio, num=n_samples)  # x             - For Mono Files
 
 # print(signal_array)
