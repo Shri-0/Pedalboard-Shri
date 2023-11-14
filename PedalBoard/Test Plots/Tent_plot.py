@@ -29,13 +29,6 @@ times = np.linspace(0, t_audio, num=n_samples*2)  # x
 
 # times = np.linspace(0, t_audio, num=n_samples)  # x             - For Mono Files
 
-# print(signal_array)
-# print(times)
-
-# x = np.array(times)
-# y = np.array(signal_array)
-
-
 ###########
 
 data = struct.unpack('{n}h'.format(n=n_samples*2), data)
@@ -48,6 +41,12 @@ data_fft = np.fft.fft(data)
 
 # we are going to get the frequencies we want
 frequencies = np.abs(data_fft)
+
+time = np.argmax(frequencies)
+freeze = (n_samples / 2)
+print(freeze/time)
+
+
 
 # data_fft[1] will contain frequency parts of 1Hz
 # data_fft[2] will contain frequency part of 2Hz
@@ -159,4 +158,3 @@ plt.plot(frequencies)
 plt.title("Frequencies Found")
 plt.xlim(0, 25000)
 plt.show()
-

@@ -44,7 +44,7 @@ data = np.array(data)
 # converting data to numpy array
 
 data_fft = np.fft.fft(data)
-#print(data_fft)
+# print(data_fft)
 
 # we are going to get the frequencies we want
 frequencies = np.abs(data_fft)
@@ -125,8 +125,6 @@ plt.xlim(0, t_audio_two)
 plt.show()
 
 
-
-
 ####################  Combined   ##############################
 
 combined_signal_array = signal_array + signal_array_two
@@ -161,7 +159,6 @@ plt.plot(frequencies)
 plt.title("Frequencies Found")
 plt.xlim(0, 25000)
 plt.show()
-
 
 
 ####################  Established Vst PRE   ##############################
