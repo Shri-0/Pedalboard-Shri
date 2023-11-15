@@ -50,8 +50,18 @@ print(ValhallaFreqEchoeffect.stereo)
 ########################## Generation ###########################
 
 sample_rate = 44100
+num_channels = 2
+with AudioFile("Rhode.wav", "w", sample_rate, num_channels) as f:
+    f.write(instrument(
+        [Message("note_on", note=60), Message("note_off", note=60, time=4)],
+        sample_rate=sample_rate,
+        duration=8,
+        num_channels=num_channels
+    ))
+
+'''
 audio = instrument(
-    [Message("note_on", note=60), Message("note_off", note=60, time=5)],
+    [Message("note_on", note=90), Message("note_off", note=90, time=5)],
     duration=5,  # seconds
     sample_rate=sample_rate
 )
@@ -61,36 +71,6 @@ print(audio)
 decoded = np.frombuffer(audio)
 
 print(decoded)
-
-
-# print("Number of channels", audio.getnchannels())  # 2
-# print("sample width", audio.getsampwidth())  # 2
-# print("frame rate", audio.getframerate())  # 16000
-# print("Number of frames", audio.getnframes())  # 176000
-# BaseAudioContext.createBuffer()
-
-# with AudioFile('Rhode_Effect.wav') as f:
-
-# frames = audio.readframes(-1)  # reads all frames
-# print(frames)
-
-# Open an audio file to write to:
-
-
-'''
-with AudioFile('Rhode_Effect.wav', 'w', sample_rate, num_channels=2) as o:
-
-        # Read one second of audio at a time, until the file is empty:
-    while o.tell() < o.frames:
-        chunk = o.read(o.samplerate)
-
-
-            # Run the audio through our pedalboard:
-effected = SketchCassetteEffect(decoded, sample_rate)
-
-#o.write(effected)
-
-print(effected)
 '''
 
 
