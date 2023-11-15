@@ -2,6 +2,8 @@ from pedalboard import Pedalboard, Chorus, Reverb, Delay, load_plugin
 from pedalboard.io import AudioFile
 from mido import Message
 import wave
+import numpy as np
+
 
 # I am going to see if I can replicate the same results in an actual logic session using the same parameters here
 
@@ -10,7 +12,7 @@ import wave
 instrument = load_plugin(
     "/Library/Audio/Plug-Ins/Components/Addictive Keys.component")
 
-#instrument.show_editor()
+# instrument.show_editor()
 
 # dict_keys(['modulation_x', 'ch1_level', 'ch2_level', 'ch3_level', 'ch1_sendfx1', 'ch1_sendfx2', 'ch2_sendfx1', 'ch2_sendfx2', 'ch3_sendfx1', 'ch3_sendfx2', 'fx1_level', 'fx2_level', 'master_level', 'master_filtlo', 'master_filthi'])
 
@@ -24,11 +26,11 @@ SketchCassetteEffect = load_plugin(
 
 SketchCassetteEffect.flutter_rate = 6.7
 
-#SketchCassetteEffect.show_editor()
+# SketchCassetteEffect.show_editor()
 print(SketchCassetteEffect.flutter_rate)
-#print(SketchCassetteEffect.tape_quality)
-#print(SketchCassetteEffect.age)
-#print(SketchCassetteEffect.output_gain)
+# print(SketchCassetteEffect.tape_quality)
+# print(SketchCassetteEffect.age)
+# print(SketchCassetteEffect.output_gain)
 
 
 # Valhalla Frequency Echo
@@ -45,31 +47,37 @@ print(ValhallaFreqEchoeffect.stereo)
 '''
 
 
-
 ########################## Generation ###########################
 
 sample_rate = 44100
 audio = instrument(
     [Message("note_on", note=60), Message("note_off", note=60, time=5)],
     duration=5,  # seconds
-    sample_rate=sample_rate,
+    sample_rate=sample_rate
 )
 
 print(audio)
 
-#print("Number of channels", audio.getnchannels())  # 2
-#print("sample width", audio.getsampwidth())  # 2
-#print("frame rate", audio.getframerate())  # 16000
-#print("Number of frames", audio.getnframes())  # 176000
+decoded = np.frombuffer(audio)
+
+print(decoded)
 
 
-#with AudioFile('Rhode_Effect.wav') as f:
+# print("Number of channels", audio.getnchannels())  # 2
+# print("sample width", audio.getsampwidth())  # 2
+# print("frame rate", audio.getframerate())  # 16000
+# print("Number of frames", audio.getnframes())  # 176000
+# BaseAudioContext.createBuffer()
 
-#frames = audio.readframes(-1)  # reads all frames
-#print(frames)
+# with AudioFile('Rhode_Effect.wav') as f:
 
-    # Open an audio file to write to:
+# frames = audio.readframes(-1)  # reads all frames
+# print(frames)
 
+# Open an audio file to write to:
+
+
+'''
 with AudioFile('Rhode_Effect.wav', 'w', sample_rate, num_channels=2) as o:
 
         # Read one second of audio at a time, until the file is empty:
@@ -78,18 +86,14 @@ with AudioFile('Rhode_Effect.wav', 'w', sample_rate, num_channels=2) as o:
 
 
             # Run the audio through our pedalboard:
-effected = SketchCassetteEffect(audio, sample_rate)
+effected = SketchCassetteEffect(decoded, sample_rate)
 
 #o.write(effected)
 
 print(effected)
+'''
 
 
-
-
-
-
-
-#print(SketchCassetteEffect.parameters.keys())
-#print(ValhallaFreqEchoeffect.parameters.keys())
-#print(instrument.parameters.keys())
+# print(SketchCassetteEffect.parameters.keys())
+# print(ValhallaFreqEchoeffect.parameters.keys())
+# print(instrument.parameters.keys())
