@@ -49,7 +49,7 @@ print(ValhallaFreqEchoeffect.delay)
 print(ValhallaFreqEchoeffect.sync)
 print(ValhallaFreqEchoeffect.stereo)
 
-
+ValhallaFreqEchoeffect.wetdry = 0.8
 ValhallaFreqEchoeffect.delay = 0.5
 
 
