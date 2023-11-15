@@ -8,15 +8,16 @@ import struct
 
 ############## WET VOICE SIGNAL ##############
 
-obj = wave.open("testing_change.wav", "rb")
+obj = wave.open("PedalBoard/Test Files - .WAV/Tent/testing_change.wav", "rb")
 
 sample_freq = obj.getframerate()
 n_samples = obj.getnframes()
 signal_wave = obj.readframes(-1)
-signal_wave_freq = obj.readframes(n_samples)
+# signal_wave_freq = obj.readframes(n_samples)
+
 obj.close()
 
-infile = "testing_change.wav"
+infile = "PedalBoard/Test Files - .WAV/Tent/testing_change.wav"
 wav_file = wave.open(infile, 'r')
 data = wav_file.readframes(n_samples)
 
@@ -42,10 +43,9 @@ data_fft = np.fft.fft(data)
 # we are going to get the frequencies we want
 frequencies = np.abs(data_fft)
 
-time = np.argmax(frequencies)
-freeze = (n_samples / 2)
-print(freeze/time)
-
+# time = np.argmax(frequencies)
+# freeze = (n_samples / 2)
+# print(freeze/time)
 
 
 # data_fft[1] will contain frequency parts of 1Hz
@@ -73,7 +73,7 @@ plt.show()
 
 ####################  DRY VOICE SIGNAL   ##############################
 
-obj_two = wave.open("test_message.wav", "rb")
+obj_two = wave.open("PedalBoard/Test Files - .WAV/Tent/test_message.wav", "rb")
 
 sample_freq_two = obj_two.getframerate()
 n_samples_two = obj_two.getnframes()
@@ -85,9 +85,9 @@ signal_array_two = np.frombuffer(signal_wave_two, dtype=np.int16)  # y
 times_two = np.linspace(0, t_audio_two, num=n_samples_two*2)  # x
 
 
-infile = "test_message.wav"
+infile = "PedalBoard/Test Files - .WAV/Tent/test_message.wav"
 wav_file = wave.open(infile, 'r')
-data = wav_file.readframes(n_samples)
+data = wav_file.readframes(n_samples_two)
 
 t_audio = n_samples / sample_freq
 
