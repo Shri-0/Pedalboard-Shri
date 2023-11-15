@@ -24,13 +24,17 @@ SketchCassetteEffect = load_plugin(
     "/Library/Audio/Plug-Ins/Components/SketchCassette II.component")
 # dict_keys(['input_gain', 'output_gain', 'comp_dry_wet', 'dropout_intensity', 'flutter_rate', 'comp_amount', 'tape_quality', 'wow_rate', 'saturation_type', 'flutter_offset', 'wow_offset', 'age', 'flutter_rhythm', 'comp_brightness', 'wow_rhythm', 'dropout_depth', 'flutter_depth', 'flutter_shape', 'flanging', 'tape_hiss', 'nr_comp', 'tape_dry_wet', 'wow_depth', 'wow_shape', 'wow_flutter_mode', 'dropout_width', 'tape_type', 'tempo_sync', 'saturation'])
 
-SketchCassetteEffect.flutter_rate = 6.7
+SketchCassetteEffect.flutter_rate = 11.9
+SketchCassetteEffect.age = 0.9
+SketchCassetteEffect.output_gain = -2.0
+SketchCassetteEffect.tape_quality = 'Cheap'
+SketchCassetteEffect.flutter_rhythm = '1/16 trip.'
 
 # SketchCassetteEffect.show_editor()
 print(SketchCassetteEffect.flutter_rate)
-# print(SketchCassetteEffect.tape_quality)
-# print(SketchCassetteEffect.age)
-# print(SketchCassetteEffect.output_gain)
+print(SketchCassetteEffect.tape_quality)
+print(SketchCassetteEffect.age)
+print(SketchCassetteEffect.output_gain)
 
 
 # Valhalla Frequency Echo
@@ -38,17 +42,20 @@ ValhallaFreqEchoeffect = load_plugin(
     "/Library/Audio/Plug-Ins/Components/ValhallaFreqEcho.component")
 # dict_keys(['wetdry', 'shift', 'delay', 'sync', 'feedback', 'lowcut', 'highcut', 'stereo'])
 
-''''
-ValhallaFreqEchoeffect.show_editor()
+
+#ValhallaFreqEchoeffect.show_editor()
 print(ValhallaFreqEchoeffect.wetdry)
 print(ValhallaFreqEchoeffect.delay)
 print(ValhallaFreqEchoeffect.sync)
 print(ValhallaFreqEchoeffect.stereo)
-'''
+
+
+ValhallaFreqEchoeffect.delay = 0.5
+
 
 
 ########################## Generation ###########################
-
+'''
 sample_rate = 44100
 num_channels = 2
 with AudioFile("Rhode.wav", "w", sample_rate, num_channels) as f:
@@ -58,20 +65,23 @@ with AudioFile("Rhode.wav", "w", sample_rate, num_channels) as f:
         duration=8,
         num_channels=num_channels
     ))
-
 '''
-audio = instrument(
-    [Message("note_on", note=90), Message("note_off", note=90, time=5)],
-    duration=5,  # seconds
-    sample_rate=sample_rate
-)
 
-print(audio)
 
-decoded = np.frombuffer(audio)
+with AudioFile('Rhode.wav') as f:
 
-print(decoded)
-'''
+    # Open an audio file to write to:
+    with AudioFile('Rhode_SC.wav', 'w', f.samplerate, f.num_channels) as o:
+
+        # Read one second of audio at a time, until the file is empty:
+        while f.tell() < f.frames:
+            chunk = f.read(f.samplerate)
+
+            # Run the audio through our pedalboard:
+            effected = SketchCassetteEffect(chunk, f.samplerate, reset=False)
+            effected_V = SketchCassetteEffect(chunk, f.samplerate, reset=False)
+
+            o.write(effected + effected_V)
 
 
 # print(SketchCassetteEffect.parameters.keys())
