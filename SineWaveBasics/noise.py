@@ -33,7 +33,7 @@ sine_noise = [np.sin(2 * np.pi * noisy_freq * x1/sampling_rate)
 
 sine_wave = np.array(sine_wav)
 noise_wav = np.array(sine_noise)
-file = "testing.wav"
+file = "combined_sine.wav"
 
 # put them together
 

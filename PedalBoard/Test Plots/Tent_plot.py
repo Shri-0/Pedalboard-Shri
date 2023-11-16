@@ -43,6 +43,7 @@ data_fft = np.fft.fft(data)
 # we are going to get the frequencies we want
 frequencies = np.abs(data_fft)
 
+
 # time = np.argmax(frequencies)
 # freeze = (n_samples / 2)
 # print(freeze/time)
@@ -89,7 +90,7 @@ infile = "PedalBoard/Test Files - .WAV/Tent/test_message.wav"
 wav_file = wave.open(infile, 'r')
 data = wav_file.readframes(n_samples_two)
 
-t_audio = n_samples / sample_freq
+t_audio = n_samples_two / sample_freq_two
 
 
 data = struct.unpack('{n}h'.format(n=n_samples*2), data)

@@ -22,7 +22,7 @@ num_samples = 48000
 # sampling rate
 sampling_rate = 48000.0
 amplitude = 16000
-file = "sineStereo.wav"
+file = "Sines.wav"
 
 
 # function

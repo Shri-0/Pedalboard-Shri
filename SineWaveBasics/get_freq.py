@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 frame_rate = 48000.0
 # infile = "test.wav"
-infile = "sineAmend.wav"
+infile = "Sines.wav"
 
 num_samples = 48000
 wav_file = wave.open(infile, 'r')

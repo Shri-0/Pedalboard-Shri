@@ -13,3 +13,13 @@ B.  3rd Party Established VSTs need extensive testing (not sure if possible with
 C.  Live Audiostream feature needs to be coded and tested - Update: Can route audio out from synth into interface, and can adjust audio as necessary in pedalboard when start button is hit
 
 D. Will need to graphically analyze and plot sounds generated from PedalBoard session folder (update: Implemented from PB-ScratchVST.py into Tent_plot.py)
+
+
+---------------
+
+Errors that need resolving:
+
+Modified Voice file shows frequency range as 189,000+ HZ, this needs to be fixed (PB-ScratchVST.py into Tent_plot.py)
+Raw Voice File and combined are 11000 Hz...which makes more sense
+
+Raw MIDI generation freq range is 2000HZ which is accurate (PB-EstablishedVST.py)

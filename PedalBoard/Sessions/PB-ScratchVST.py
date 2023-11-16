@@ -75,7 +75,7 @@ print("parameters", obj.getparams())
 
 frames = obj.readframes(-1)  # reads all frames
 print(type(frames), type(frames[0]))
-print(len(frames) / 2)                    #352000.0 frames
+print(len(frames) / 2)  # 352000.0 frames
 
 obj_new = wave.open("testing_change.wav", "wb")
 
