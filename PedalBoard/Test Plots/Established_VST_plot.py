@@ -90,7 +90,7 @@ infile = "PedalBoard/Test Files - .WAV/Established/Rhode_SC.wav"
 wav_file = wave.open(infile, 'r')
 data = wav_file.readframes(n_samples_two)
 
-t_audio = n_samples_two / sample_freq_two
+t_audio_two = n_samples_two / sample_freq_two
 
 
 data = struct.unpack('{n}h'.format(n=n_samples_two*2), data)
@@ -123,3 +123,57 @@ plt.ylabel("Signal Wave")
 plt.xlabel("Time(s)")
 plt.xlim(0, t_audio_two)
 plt.show()
+
+
+####################  Combined MIDI .WAV SIGNAL   ##############################
+
+combined_signal_array = signal_array + signal_array_two
+combined_times = times + times_two
+
+plt.figure(figsize=(15, 5))
+plt.plot(combined_times, combined_signal_array)
+plt.title("Combined signal")
+plt.ylabel("Signal Wave")
+plt.xlabel("Time(s)")
+plt.xlim(0, t_audio_two)
+plt.show()
+
+
+data = struct.unpack('{n}h'.format(n=n_samples*2), combined_signal_array)
+data = np.array(data)
+
+# converting data to numpy array
+
+data_fft = np.fft.fft(data)
+# print(data_fft)
+
+# we are going to get the frequencies we want
+frequencies = np.abs(data_fft)
+print("The frequency is {} Hz".format(np.argmax(frequencies)))
+
+plt.subplot(2, 1, 1)
+plt.plot(data[:500000])  # this will cut off the graph at hz
+plt.title("Combined Rhode and Delay wave")
+plt.subplot(2, 1, 2)
+plt.plot(frequencies)
+plt.title("Frequencies Found")
+plt.xlim(0, 25000)
+plt.show()
+
+
+obj = wave.open("PedalBoard/Test Files - .WAV/Established/Rhode_SC.wav", "rb")
+
+frames = obj.readframes(-1)  # reads all frames
+
+obj_new = wave.open("Combination.WAV", "wb")
+
+obj_new.setnchannels(2)
+obj_new.setsampwidth(2)
+obj_new.setframerate(44100.0)
+obj_new.writeframes(frames)
+
+
+obj_new.close()
+
+
+####################  Filtered Delay  - Process  ##############################
