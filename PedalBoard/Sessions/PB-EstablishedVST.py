@@ -79,7 +79,7 @@ with AudioFile('Rhode.wav') as f:
 
             # Run the audio through our pedalboard:
             effected = SketchCassetteEffect(chunk, f.samplerate, reset=False)
-            effected_V = SketchCassetteEffect(chunk, f.samplerate, reset=False)
+            effected_V = ValhallaFreqEchoeffect(chunk, f.samplerate, reset=False)
 
             o.write(effected + effected_V)
 

@@ -3,7 +3,7 @@ import numpy as np
 import wave
 import struct
 
-############## Regular MIDI .Wav SIGNAL ##############
+############# Regular MIDI .Wav SIGNAL ##############
 
 obj = wave.open("PedalBoard/Test Files - .WAV/Established/Rhode.wav", "rb")
 
@@ -71,3 +71,55 @@ plt.xlabel("Time(s)")
 plt.xlim(0, t_audio)
 plt.show()
 
+####################  Processed MIDI .WAV SIGNAL   ##############################
+
+
+obj_two = wave.open("PedalBoard/Test Files - .WAV/Established/Rhode_SC.wav", "rb")
+
+sample_freq_two = obj_two.getframerate()
+n_samples_two = obj_two.getnframes()
+signal_wave_two = obj_two.readframes(-1)
+obj_two.close()
+
+t_audio_two = n_samples_two / sample_freq_two
+signal_array_two = np.frombuffer(signal_wave_two, dtype=np.int16)  # y
+times_two = np.linspace(0, t_audio_two, num=n_samples_two*2)  # x
+
+
+infile = "PedalBoard/Test Files - .WAV/Established/Rhode_SC.wav"
+wav_file = wave.open(infile, 'r')
+data = wav_file.readframes(n_samples_two)
+
+t_audio = n_samples_two / sample_freq_two
+
+
+data = struct.unpack('{n}h'.format(n=n_samples_two*2), data)
+data = np.array(data)
+
+# converting data to numpy array
+
+data_fft = np.fft.fft(data)
+# print(data_fft)
+
+# we are going to get the frequencies we want
+frequencies = np.abs(data_fft)
+
+print("The frequency is {} Hz".format(np.argmax(frequencies)))
+
+plt.subplot(2, 1, 1)
+plt.plot(data[:500000])  # this will cut off the graph at hz
+plt.title("Post SketchCassette Audio wave")
+plt.subplot(2, 1, 2)
+plt.plot(frequencies)
+plt.title("Frequencies Found")
+plt.xlim(0, 25000)
+plt.show()
+
+
+plt.figure(figsize=(15, 5))
+plt.plot(times_two, signal_array_two)
+plt.title("Post SketchCassette signal")
+plt.ylabel("Signal Wave")
+plt.xlabel("Time(s)")
+plt.xlim(0, t_audio_two)
+plt.show()

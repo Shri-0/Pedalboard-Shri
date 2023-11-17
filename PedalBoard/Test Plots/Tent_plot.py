@@ -93,7 +93,7 @@ data = wav_file.readframes(n_samples_two)
 t_audio = n_samples_two / sample_freq_two
 
 
-data = struct.unpack('{n}h'.format(n=n_samples*2), data)
+data = struct.unpack('{n}h'.format(n=n_samples_two*2), data)
 data = np.array(data)
 
 # converting data to numpy array
