@@ -74,7 +74,8 @@ plt.show()
 ####################  Processed MIDI .WAV SIGNAL   ##############################
 
 
-obj_two = wave.open("PedalBoard/Test Files - .WAV/Established/Rhode_SC.wav", "rb")
+obj_two = wave.open(
+    "PedalBoard/Test Files - .WAV/Established/Rhode_SC.wav", "rb")
 
 sample_freq_two = obj_two.getframerate()
 n_samples_two = obj_two.getnframes()
@@ -161,19 +162,24 @@ plt.xlim(0, 25000)
 plt.show()
 
 
-obj = wave.open("PedalBoard/Test Files - .WAV/Established/Rhode_SC.wav", "rb")
+####################  Filtered Delay  - Process  ##############################
 
-frames = obj.readframes(-1)  # reads all frames
+
+####### Addition #########
+'''
+
+obj = wave.open("PedalBoard/Test Files - .WAV/Established/Rhode_SC.wav", "rb")
+frames = obj.readframes(-1)
+
+obj_two = wave.open("PedalBoard/Test Files - .WAV/Established/Rhode.wav", "rb")
+frames_two = obj_two.readframes(-1)
 
 obj_new = wave.open("Combination.WAV", "wb")
 
 obj_new.setnchannels(2)
 obj_new.setsampwidth(2)
 obj_new.setframerate(44100.0)
-obj_new.writeframes(frames)
-
+obj_new.writeframes(frames + frames_two)
 
 obj_new.close()
-
-
-####################  Filtered Delay  - Process  ##############################
+'''

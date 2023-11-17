@@ -159,3 +159,7 @@ plt.plot(frequencies)
 plt.title("Frequencies Found")
 plt.xlim(0, 25000)
 plt.show()
+
+
+####### Combination ##########
+
