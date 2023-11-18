@@ -33,21 +33,32 @@ input_device_name = AudioStream.input_device_names[1]
 output_device_name = AudioStream.output_device_names[1]
 
 
-with AudioStream(
-    input_device_name, output_device_name
-
-) as stream:
-    stream.plugins = Pedalboard([
-        Chorus(),
-        Phaser(),
-        Reverb(room_size=0.25),
-    ])
-
-    input("Press enter to stop streaming...")
+def main():
+    liveAudio()
 
 
+def liveAudio():
+	with AudioStream(
+		input_device_name, output_device_name
+
+	) as stream:
+		stream.plugins = Pedalboard([
+			Chorus(),
+			Phaser(),
+			Reverb(room_size=0.25),
+		])
+
+		input("Press enter to stop streaming...")
 
 
 
 print(input_device_name)
 print(output_device_name)
+
+
+
+
+
+
+if __name__ == "__main__":
+    main()

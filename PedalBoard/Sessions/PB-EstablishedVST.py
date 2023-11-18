@@ -55,35 +55,46 @@ ValhallaFreqEchoeffect.delay = 0.5
 
 
 ########################## Generation ###########################
-'''
-sample_rate = 44100
-num_channels = 2
-with AudioFile("Rhode.wav", "w", sample_rate, num_channels) as f:
-    f.write(instrument(
-        [Message("note_on", note=60), Message("note_off", note=60, time=4)],
-        sample_rate=sample_rate,
-        duration=8,
-        num_channels=num_channels
-    ))
-'''
 
 
-with AudioFile('Rhode.wav') as f:
+def create_note():
+	sample_rate = 44100
+	num_channels = 2
+	with AudioFile("Rhode.wav", "w", sample_rate, num_channels) as f:
+		f.write(instrument(
+			[Message("note_on", note=60), Message("note_off", note=60, time=4)],
+			sample_rate=sample_rate,
+			duration=8,
+			num_channels=num_channels
+		))
 
-    # Open an audio file to write to:
-    with AudioFile('Rhode_SC.wav', 'w', f.samplerate, f.num_channels) as o:
 
-        # Read one second of audio at a time, until the file is empty:
-        while f.tell() < f.frames:
-            chunk = f.read(f.samplerate)
 
-            # Run the audio through our pedalboard:
-            effected = SketchCassetteEffect(chunk, f.samplerate, reset=False)
-            effected_V = ValhallaFreqEchoeffect(chunk, f.samplerate, reset=False)
 
-            o.write(effected + effected_V)
+def create_wave():
+	with AudioFile('Rhode.wav') as f:
+
+		# Open an audio file to write to:
+		with AudioFile('Rhode_SC.wav', 'w', f.samplerate, f.num_channels) as o:
+
+			# Read one second of audio at a time, until the file is empty:
+			while f.tell() < f.frames:
+				chunk = f.read(f.samplerate)
+
+				# Run the audio through our pedalboard:
+				effected = SketchCassetteEffect(chunk, f.samplerate, reset=False)
+				effected_V = ValhallaFreqEchoeffect(chunk, f.samplerate, reset=False)
+
+				o.write(effected + effected_V)
 
 
 # print(SketchCassetteEffect.parameters.keys())
 # print(ValhallaFreqEchoeffect.parameters.keys())
 # print(instrument.parameters.keys())
+
+def main():
+    create_note()
+    create_wave()
+
+if __name__ == "__main__":
+   main()

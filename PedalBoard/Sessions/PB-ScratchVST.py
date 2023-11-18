@@ -36,19 +36,21 @@ effect.par15 = 5.00
 
 # effected = effect(file)
 
-with AudioFile('test_message.wav') as f:
+def overWrite():
 
-    # Open an audio file to write to:
-    with AudioFile('Test_Two.wav', 'w', f.samplerate, f.num_channels) as o:
+	with AudioFile('test_message.wav') as f:
 
-        # Read one second of audio at a time, until the file is empty:
-        while f.tell() < f.frames:
-            chunk = f.read(f.samplerate)
+		# Open an audio file to write to:
+		with AudioFile('Test_Two.wav', 'w', f.samplerate, f.num_channels) as o:
 
-            # Run the audio through our pedalboard:
-            effected = effect(chunk, f.samplerate, reset=False)
+			# Read one second of audio at a time, until the file is empty:
+			while f.tell() < f.frames:
+				chunk = f.read(f.samplerate)
 
-            o.write(effected)
+				# Run the audio through our pedalboard:
+				effected = effect(chunk, f.samplerate, reset=False)
+
+				o.write(effected)
 
 
 ######### Plotting The Wave #########
@@ -61,29 +63,40 @@ with AudioFile('test_message.wav') as f:
 # duration - 11s
 
 
-obj = wave.open("Test_Two.WAV", "rb")
+def new():
+	obj = wave.open("Test_Two.WAV", "rb")
 
 
-print("Number of channels", obj.getnchannels())  # 2
-print("sample width", obj.getsampwidth())  # 2
-print("frame rate", obj.getframerate())  # 16000
-print("Number of frames", obj.getnframes())  # 176000
+	print("Number of channels", obj.getnchannels())  # 2
+	print("sample width", obj.getsampwidth())  # 2
+	print("frame rate", obj.getframerate())  # 16000
+	print("Number of frames", obj.getnframes())  # 176000
 
 
-print("parameters", obj.getparams())
-# comptype = NONE, comname= "not compressed"
+	print("parameters", obj.getparams())
+	# comptype = NONE, comname= "not compressed"
 
-frames = obj.readframes(-1)  # reads all frames
-print(type(frames), type(frames[0]))
-print(len(frames) / 2)  # 352000.0 frames
+	frames = obj.readframes(-1)  # reads all frames
+	print(type(frames), type(frames[0]))
+	print(len(frames) / 2)  # 352000.0 frames
 
-obj_new = wave.open("testing_change.wav", "wb")
+	obj_new = wave.open("testing_change.wav", "wb")
 
-obj_new.setnchannels(2)
-obj_new.setsampwidth(2)
-obj_new.setframerate(16000.0)
-obj_new.writeframes(frames)
+	obj_new.setnchannels(2)
+	obj_new.setsampwidth(2)
+	obj_new.setframerate(16000.0)
+	obj_new.writeframes(frames)
 
-obj_new.close()
+	obj_new.close()
 
 ####### Soundfile has been converted ###
+
+
+def main():
+    overWrite()
+    new()
+
+
+
+if __name__ == "__main__":
+    main()
