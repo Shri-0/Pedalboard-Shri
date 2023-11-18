@@ -5,75 +5,81 @@ import struct
 
 ############# Regular MIDI .Wav SIGNAL ##############
 
-obj = wave.open("PedalBoard/Test Files - .WAV/Established/Rhode.wav", "rb")
 
-sample_freq = obj.getframerate()
-n_samples = obj.getnframes()
-signal_wave = obj.readframes(-1)
-# signal_wave_freq = obj.readframes(n_samples)
-
-obj.close()
-
-infile = "PedalBoard/Test Files - .WAV/Established/Rhode.wav"
-wav_file = wave.open(infile, 'r')
-data = wav_file.readframes(n_samples)
-
-t_audio = n_samples / sample_freq
-
-print(sample_freq)
-print(n_samples)
+def main():
+    sample()
 
 
-# print(t_audio)
+def sample():
+	obj = wave.open("PedalBoard/Test Files - .WAV/Established/Rhode.wav", "rb")
 
-signal_array = np.frombuffer(signal_wave, dtype=np.int16)  # y
-times = np.linspace(0, t_audio, num=n_samples*2)  # x
+	sample_freq = obj.getframerate()
+	n_samples = obj.getnframes()
+	signal_wave = obj.readframes(-1)
+	# signal_wave_freq = obj.readframes(n_samples)
 
-# times = np.linspace(0, t_audio, num=n_samples)  # x             - For Mono Files
+	obj.close()
 
-###########
+	infile = "PedalBoard/Test Files - .WAV/Established/Rhode.wav"
+	wav_file = wave.open(infile, 'r')
+	data = wav_file.readframes(n_samples)
 
-data = struct.unpack('{n}h'.format(n=n_samples*2), data)
-data = np.array(data)
+	t_audio = n_samples / sample_freq
 
-# converting data to numpy array
-
-data_fft = np.fft.fft(data)
-# print(data_fft)
-
-# we are going to get the frequencies we want
-frequencies = np.abs(data_fft)
-
-# time = np.argmax(frequencies)
-# freeze = (n_samples / 2)
-# print(freeze/time)
+	print(sample_freq)
+	print(n_samples)
 
 
-# data_fft[1] will contain frequency parts of 1Hz
-# data_fft[2] will contain frequency part of 2Hz
-print("The frequency is {} Hz".format(np.argmax(frequencies)))
+	# print(t_audio)
 
-plt.subplot(2, 1, 1)
-plt.plot(data[:500000])  # this will cut off the graph at hz
-plt.title("Pure Tone Audio Wave")
-plt.subplot(2, 1, 2)
-plt.plot(frequencies)
-plt.title("Frequencies Found")
-plt.xlim(0, 25000)
-plt.show()
+	signal_array = np.frombuffer(signal_wave, dtype=np.int16)  # y
+	times = np.linspace(0, t_audio, num=n_samples*2)  # x
+
+	# times = np.linspace(0, t_audio, num=n_samples)  # x             - For Mono Files
+
+	###########
+
+	data = struct.unpack('{n}h'.format(n=n_samples*2), data)
+	data = np.array(data)
+
+	# converting data to numpy array
+
+	data_fft = np.fft.fft(data)
+	# print(data_fft)
+
+	# we are going to get the frequencies we want
+	frequencies = np.abs(data_fft)
+
+	# time = np.argmax(frequencies)
+	# freeze = (n_samples / 2)
+	# print(freeze/time)
 
 
-plt.figure(figsize=(15, 5))
-plt.plot(times, signal_array)
-plt.title("Pure Tone signal")
-plt.ylabel("Signal Wave")
-plt.xlabel("Time(s)")
-plt.xlim(0, t_audio)
-plt.show()
+	# data_fft[1] will contain frequency parts of 1Hz
+	# data_fft[2] will contain frequency part of 2Hz
+	print("The frequency is {} Hz".format(np.argmax(frequencies)))
+
+	plt.subplot(2, 1, 1)
+	plt.plot(data[:500000])  # this will cut off the graph at hz
+	plt.title("Pure Tone Audio Wave")
+	plt.subplot(2, 1, 2)
+	plt.plot(frequencies)
+	plt.title("Frequencies Found")
+	plt.xlim(0, 25000)
+	plt.show()
+
+
+	plt.figure(figsize=(15, 5))
+	plt.plot(times, signal_array)
+	plt.title("Pure Tone signal")
+	plt.ylabel("Signal Wave")
+	plt.xlabel("Time(s)")
+	plt.xlim(0, t_audio)
+	plt.show()
 
 ####################  Processed MIDI .WAV SIGNAL   ##############################
 
-
+'''
 obj_two = wave.open(
     "PedalBoard/Test Files - .WAV/Established/Rhode_SC.wav", "rb")
 
@@ -125,9 +131,10 @@ plt.xlabel("Time(s)")
 plt.xlim(0, t_audio_two)
 plt.show()
 
+'''
 
 ####################  Combined MIDI .WAV SIGNAL   ##############################
-
+'''
 combined_signal_array = signal_array + signal_array_two
 combined_times = times + times_two
 
@@ -177,6 +184,7 @@ plt.show()
 ####### Addition #########
 '''
 
+'''
 obj = wave.open("PedalBoard/Test Files - .WAV/Established/Rhode_SC.wav", "rb")
 frames = obj.readframes(-1)
 
@@ -192,3 +200,7 @@ obj_new.writeframes(frames + frames_two)
 
 obj_new.close()
 '''
+
+
+if __name__ == "__main__":
+    main()
