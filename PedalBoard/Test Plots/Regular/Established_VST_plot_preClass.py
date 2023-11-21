@@ -7,7 +7,7 @@ import struct
 
 
 # def sample_pure_rhodes():
-obj = wave.open("PedalBoard/Test Files - .WAV/Established/Rhode.wav", "rb")
+obj = wave.open("PedalBoard/Test Files - .WAV/Established/Rhode_Note_V1.wav", "rb")
 
 sample_freq = obj.getframerate()
 n_samples = obj.getnframes()
@@ -29,7 +29,7 @@ print(n_samples)
 signal_array = np.frombuffer(signal_wave, dtype=np.int16)  # y
 times = np.linspace(0, t_audio, num=n_samples*2)  # x
 
-print(signal_array)
+# print(signal_array)
 # times = np.linspace(0, t_audio, num=n_samples)  # x             - For Mono Files
 
 ###########
@@ -80,7 +80,7 @@ plt.show()
 # def sample_amend_rhodes():
 
 obj_two = wave.open(
-	"PedalBoard/Test Files - .WAV/Established/Rhode_SC.wav", "rb")
+    "PedalBoard/Test Files - .WAV/Established/Rhode_SC_Note_V1.wav", "rb")
 
 sample_freq_two = obj_two.getframerate()
 n_samples_two = obj_two.getnframes()
@@ -92,7 +92,7 @@ signal_array_two = np.frombuffer(signal_wave_two, dtype=np.int16)  # y
 times_two = np.linspace(0, t_audio_two, num=n_samples_two*2)  # x
 
 
-infile = "PedalBoard/Test Files - .WAV/Established/Rhode_SC.wav"
+infile = "PedalBoard/Test Files - .WAV/Established/Rhode_SC_Note_V1.wav"
 wav_file = wave.open(infile, 'r')
 data = wav_file.readframes(n_samples_two)
 
@@ -138,7 +138,10 @@ plt.show()
 
 # def combine_signals(signal_array, signal_array_two, times, times_two, t_audio_two, n_samples):
 
-combined_signal_array = (signal_array + signal_array_two)
+
+# ------------------------------- Work In progress ------------------------------- #
+
+combined_signal_array = signal_array + signal_array_two
 combined_times = times + times_two
 
 plt.figure(figsize=(15, 5))
@@ -179,6 +182,7 @@ plt.show()
 
 
 # def addition():
+'''
 obj = wave.open("PedalBoard/Test Files - .WAV/Established/Rhode_SC.wav", "rb")
 frames = obj.readframes(-1)
 
@@ -193,7 +197,7 @@ obj_new.writeframes(frames + frames_two)
 
 obj_new.close()
 
-
+'''
 #############################
 
 

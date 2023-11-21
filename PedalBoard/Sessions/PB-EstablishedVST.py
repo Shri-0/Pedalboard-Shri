@@ -2,6 +2,7 @@ from pedalboard import Pedalboard, Chorus, Reverb, Delay, load_plugin
 from pedalboard.io import AudioFile
 from mido import Message
 import wave
+import time
 import numpy as np
 
 
@@ -12,7 +13,7 @@ import numpy as np
 instrument = load_plugin(
     "/Library/Audio/Plug-Ins/Components/Addictive Keys.component")
 
-# instrument.show_editor()
+#instrument.show_editor()
 
 # dict_keys(['modulation_x', 'ch1_level', 'ch2_level', 'ch3_level', 'ch1_sendfx1', 'ch1_sendfx2', 'ch2_sendfx1', 'ch2_sendfx2', 'ch3_sendfx1', 'ch3_sendfx2', 'fx1_level', 'fx2_level', 'master_level', 'master_filtlo', 'master_filthi'])
 
@@ -60,22 +61,22 @@ ValhallaFreqEchoeffect.delay = 0.5
 def create_note():
 	sample_rate = 44100
 	num_channels = 2
-	with AudioFile("Rhode.wav", "w", sample_rate, num_channels) as f:
+	with AudioFile("Rhode_Note_V1.wav", "w", sample_rate, num_channels) as f:
 		f.write(instrument(
 			[Message("note_on", note=60), Message("note_off", note=60, time=4)],
 			sample_rate=sample_rate,
 			duration=8,
 			num_channels=num_channels
-		))
+	))
 
 
 
 
 def create_wave():
-	with AudioFile('Rhode.wav') as f:
+	with AudioFile('Rhode_Note_V1.wav') as f:
 
 		# Open an audio file to write to:
-		with AudioFile('Rhode_SC.wav', 'w', f.samplerate, f.num_channels) as o:
+		with AudioFile('Rhode_SC_Note_V1.wav', 'w', f.samplerate, f.num_channels) as o:
 
 			# Read one second of audio at a time, until the file is empty:
 			while f.tell() < f.frames:
@@ -85,7 +86,10 @@ def create_wave():
 				effected = SketchCassetteEffect(chunk, f.samplerate, reset=False)
 				effected_V = ValhallaFreqEchoeffect(chunk, f.samplerate, reset=False)
 
-				o.write(effected + effected_V)
+
+				o.write(effected)
+				time.sleep(3)
+				o.write(effected_V)
 
 
 # print(SketchCassetteEffect.parameters.keys())
