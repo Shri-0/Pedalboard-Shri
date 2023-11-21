@@ -33,8 +33,6 @@ input_device_name = AudioStream.input_device_names[1]
 output_device_name = AudioStream.output_device_names[1]
 
 
-def main():
-    liveAudio()
 
 
 def liveAudio():
@@ -58,6 +56,9 @@ print(output_device_name)
 
 
 
+
+def main():
+    liveAudio()
 
 
 if __name__ == "__main__":
