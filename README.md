@@ -12,7 +12,7 @@ A.  Results so far: Can successsfully plot sinewaves through matplotlib, and can
 B.  3rd Party Established VSTs need extensive testing (not sure if possible with Live Audio at the moment)
 C.  Live Audiostream feature needs to be coded and tested - Update: Can route audio out from synth into interface, and can adjust audio as necessary in pedalboard when start button is pressed
 
-D. Will need to graphically analyze and plot sounds generated from PedalBoard session folder (update: Implemented from PB-ScratchVST.py into Tent_plot.py) -> Need to work on combining wet and dry signals into one sound, and implement more filter seperation techniques
+D. Will need to graphically analyze and plot sounds generated from PedalBoard session folder (update: Implemented from PB-ScratchVST.py into Tent_plot.py) -> Need to work on combining wet and dry signals into one sound, and implement more filter seperation techniques (involves creating functions with return variables)
 
 
 ---------------
