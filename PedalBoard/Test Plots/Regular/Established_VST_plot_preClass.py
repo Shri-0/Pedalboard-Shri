@@ -80,7 +80,7 @@ plt.show()
 # def sample_amend_rhodes():
 
 obj_two = wave.open(
-    "PedalBoard/Test Files - .WAV/Established/Rhode_SC_Note_V1.wav", "rb")
+    "PedalBoard/Test Files - .WAV/Established/Rhode_SC_Note_Delay.wav", "rb")
 
 sample_freq_two = obj_two.getframerate()
 n_samples_two = obj_two.getnframes()
@@ -92,7 +92,7 @@ signal_array_two = np.frombuffer(signal_wave_two, dtype=np.int16)  # y
 times_two = np.linspace(0, t_audio_two, num=n_samples_two*2)  # x
 
 
-infile = "PedalBoard/Test Files - .WAV/Established/Rhode_SC_Note_V1.wav"
+infile = "PedalBoard/Test Files - .WAV/Established/Rhode_SC_Note_Delay.wav"
 wav_file = wave.open(infile, 'r')
 data = wav_file.readframes(n_samples_two)
 
@@ -143,6 +143,7 @@ plt.show()
 
 combined_signal_array = signal_array + signal_array_two
 combined_times = times + times_two
+
 
 plt.figure(figsize=(15, 5))
 plt.plot(combined_times, combined_signal_array)

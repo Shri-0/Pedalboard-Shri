@@ -30,12 +30,20 @@ SketchCassetteEffect.age = 0.9
 SketchCassetteEffect.output_gain = -2.0
 SketchCassetteEffect.tape_quality = 'Cheap'
 SketchCassetteEffect.flutter_rhythm = '1/16 trip.'
+SketchCassetteEffect.wow_offset = 8.0
+SketchCassetteEffect.tape_dry_wet = 89.0
+SketchCassetteEffect.wow_flutter_mode = "W+F"
+SketchCassetteEffect.saturation = 9.9
 
 # SketchCassetteEffect.show_editor()
 print(SketchCassetteEffect.flutter_rate)
 print(SketchCassetteEffect.tape_quality)
 print(SketchCassetteEffect.age)
 print(SketchCassetteEffect.output_gain)
+print(SketchCassetteEffect.wow_offset)
+print(SketchCassetteEffect.tape_dry_wet)
+print(SketchCassetteEffect.wow_flutter_mode)
+print(SketchCassetteEffect.saturation)
 
 
 # Valhalla Frequency Echo
@@ -45,10 +53,10 @@ ValhallaFreqEchoeffect = load_plugin(
 
 
 #ValhallaFreqEchoeffect.show_editor()
-print(ValhallaFreqEchoeffect.wetdry)
-print(ValhallaFreqEchoeffect.delay)
-print(ValhallaFreqEchoeffect.sync)
-print(ValhallaFreqEchoeffect.stereo)
+#print(ValhallaFreqEchoeffect.wetdry)
+#print(ValhallaFreqEchoeffect.delay)
+#print(ValhallaFreqEchoeffect.sync)
+#print(ValhallaFreqEchoeffect.stereo)
 
 ValhallaFreqEchoeffect.wetdry = 0.8
 ValhallaFreqEchoeffect.delay = 0.5
@@ -76,7 +84,7 @@ def create_wave():
 	with AudioFile('Rhode_Note_V1.wav') as f:
 
 		# Open an audio file to write to:
-		with AudioFile('Rhode_SC_Note_V1.wav', 'w', f.samplerate, f.num_channels) as o:
+		with AudioFile('Rhode_SC_Note_Shortened.wav', 'w', f.samplerate, f.num_channels) as o:
 
 			# Read one second of audio at a time, until the file is empty:
 			while f.tell() < f.frames:
@@ -87,8 +95,8 @@ def create_wave():
 				effected_V = ValhallaFreqEchoeffect(chunk, f.samplerate, reset=False)
 
 
-				o.write(effected)
-				time.sleep(3)
+				#o.write(effected)
+				#time.sleep(3)
 				o.write(effected_V)
 
 
@@ -97,7 +105,7 @@ def create_wave():
 # print(instrument.parameters.keys())
 
 def main():
-    create_note()
+    #create_note()
     create_wave()
 
 if __name__ == "__main__":
