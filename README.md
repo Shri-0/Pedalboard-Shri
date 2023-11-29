@@ -19,8 +19,6 @@ D. Will need to graphically analyze and plot sounds generated from PedalBoard se
 
 Errors that need resolving:
 
-1. Files with extreme delay processing (test and established plugins) shows frequency range as 189,000+ HZ, further inquiry required
+1. Files with processing (test and established plugins) with freq. range in the 100k+ Hz category needed inverse fourier transform method to resolve it to a reasonable frequency range......Raw Voice File and combined are 11000 Hz...which makes more sense
 
-Raw Voice File and combined are 11000 Hz...which makes more sense
-
-1. Raw MIDI generation freq range is 2000HZ which is accurate (PB-EstablishedVST.py)
+2. Raw MIDI generation freq range is 2000HZ which is accurate (PB-EstablishedVST.py)

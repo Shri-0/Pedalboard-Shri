@@ -9,8 +9,7 @@ import struct
 
 def sample_pure_rhodes(signal_array, times, n_samples):
 
-
-	obj = wave.open("PedalBoard/Test Files - .WAV/Established/Rhode.wav", "rb")
+	obj = wave.open("PedalBoard/Test Files - .WAV/Established/SketchTestFiles/Rhode_Test.wav", "rb")
 
 	sample_freq = obj.getframerate()
 	n_samples = obj.getnframes()
@@ -19,7 +18,7 @@ def sample_pure_rhodes(signal_array, times, n_samples):
 
 	obj.close()
 
-	infile = "PedalBoard/Test Files - .WAV/Established/Rhode.wav"
+	infile = "PedalBoard/Test Files - .WAV/Established/SketchTestFiles/Rhode_Test.wav"
 	wav_file = wave.open(infile, 'r')
 	data = wav_file.readframes(n_samples)
 	t_audio = n_samples / sample_freq
@@ -92,8 +91,7 @@ def sample_pure_rhodes(signal_array, times, n_samples):
 
 def sample_amend_rhodes(signal_array_two, times_two, t_audio_two):
 
-	obj_two = wave.open(
-		"PedalBoard/Test Files - .WAV/Established/Rhode_SC.wav", "rb")
+	obj_two = wave.open("PedalBoard/Test Files - .WAV/Established/SketchTestFiles/Rhode_Test_SCKE.wav", "rb")
 
 	sample_freq_two = obj_two.getframerate()
 	n_samples_two = obj_two.getnframes()
@@ -104,8 +102,7 @@ def sample_amend_rhodes(signal_array_two, times_two, t_audio_two):
 	signal_array_two = np.frombuffer(signal_wave_two, dtype=np.int16)  # y
 	times_two = np.linspace(0, t_audio_two, num=n_samples_two*2)  # x
 
-
-	infile = "PedalBoard/Test Files - .WAV/Established/Rhode_SC.wav"
+	infile = "PedalBoard/Test Files - .WAV/Established/SketchTestFiles/Rhode_Test_SCKE.wav"
 	wav_file = wave.open(infile, 'r')
 	data = wav_file.readframes(n_samples_two)
 
