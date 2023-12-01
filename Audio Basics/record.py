@@ -4,9 +4,11 @@ import wave
 FRAMES_PER_BUFFER = 3200
 FORMAT = pyaudio.paInt16
 CHANNELS = 2
-#CHANNELS = 1
+# CHANNELS = 1
 
 RATE = 16000
+URL = "PedalBoard/Test Files - .WAV/Tent/"
+
 
 p = pyaudio.PyAudio()
 
@@ -27,7 +29,7 @@ stream.stop_stream()
 stream.close()
 p.terminate()
 
-obj = wave.open("test_message.wav", "wb")
+obj = wave.open(URL + "shri.wav", "wb")
 obj.setnchannels(CHANNELS)
 obj.setsampwidth(p.get_sample_size(FORMAT))
 obj.setframerate(RATE)

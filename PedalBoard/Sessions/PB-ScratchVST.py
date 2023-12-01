@@ -5,6 +5,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
+
+##### CONSOLIDATE AND UPDATE URL PATHS #####
+
+
 effect = load_plugin("/Library/Audio/Plug-Ins/Components/Tent.component")
 
 # Wrapping a sample C++ plugin and processing the sine wave through there

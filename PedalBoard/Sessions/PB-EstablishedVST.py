@@ -69,12 +69,13 @@ ValhallaFreqEchoeffect.delay = 0.5
 ValhallaFreqEchoeffect.stereo = 1
 
 ########################## Generation ###########################
+URL = "PedalBoard/Test Files - .WAV/Established/SketchTestDelayFiles/"
 
 
 def create_note():
     sample_rate = 44100
     num_channels = 2
-    with AudioFile("PedalBoard/Test Files - .WAV/Established/SketchTestFiles/Rhode_Test.wav", "w", sample_rate, num_channels) as f:
+    with AudioFile(URL + "Rhode_Test.wav", "w", sample_rate, num_channels) as f:
         f.write(instrument(
                 [Message("note_on", note=60), Message(
                     "note_off", note=60, time=4)],
@@ -86,10 +87,10 @@ def create_note():
 
 
 def create_wave():
-    with AudioFile('PedalBoard/Test Files - .WAV/Established/SketchTestFiles/Rhode_Test.wav') as f:
+    with AudioFile(URL + "Rhode_Test.wav") as f:
 
         # Open an audio file to write to:
-        with AudioFile('PedalBoard/Test Files - .WAV/Established/SketchTestFiles/Rhode_Test_SCKE.wav', 'w', f.samplerate, f.num_channels) as o:
+        with AudioFile(URL + "Rhode_Test_SCKE.wav", 'w', f.samplerate, f.num_channels) as o:
 
             # Read one second of audio at a time, until the file is empty:
             while f.tell() < f.frames:
@@ -100,14 +101,12 @@ def create_wave():
                     chunk, f.samplerate, reset=False)
 
                 o.write(effected)
-                # time.sleep(3)
                 # o.write(effected_V)
 
 
 def create_delay():
-    with AudioFile('PedalBoard/Test Files - .WAV/Established/SketchTestFiles/Rhode_Test_SCKE.wav') as f:
-        with AudioFile('PedalBoard/Test Files - .WAV/Established/SketchTestFiles/Rhode_Test_SCKE_Delay.wav', 'w', f.samplerate, f.num_channels) as o:
-
+    with AudioFile(URL + "Rhode_Test_SCKE.wav") as f:
+        with AudioFile(URL + "Rhode_Test_SCKE_Delay.wav", 'w', f.samplerate, f.num_channels) as o:
             while f.tell() < f.frames:
                 chunk = f.read(f.samplerate)
                 effected = ValhallaFreqEchoeffect(
@@ -122,13 +121,10 @@ def create_delay():
 
 def main():
     create_note()
-    time.sleep(4)
-
     create_wave()
     time.sleep(12)
-
     create_delay()
 
 
 if __name__ == "__main__":
-   main()
+    main()
