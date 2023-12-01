@@ -13,7 +13,7 @@ import numpy as np
 instrument = load_plugin(
     "/Library/Audio/Plug-Ins/Components/Addictive Keys.component")
 
-#instrument.show_editor()
+# instrument.show_editor()
 
 # dict_keys(['modulation_x', 'ch1_level', 'ch2_level', 'ch3_level', 'ch1_sendfx1', 'ch1_sendfx2', 'ch2_sendfx1', 'ch2_sendfx2', 'ch3_sendfx1', 'ch3_sendfx2', 'fx1_level', 'fx2_level', 'master_level', 'master_filtlo', 'master_filthi'])
 
@@ -38,6 +38,7 @@ SketchCassetteEffect.saturation_type = "B"
 SketchCassetteEffect.flanging = 1
 
 # SketchCassetteEffect.show_editor()
+'''
 print(SketchCassetteEffect.flutter_rate)
 print(SketchCassetteEffect.tape_quality)
 print(SketchCassetteEffect.age)
@@ -48,6 +49,7 @@ print(SketchCassetteEffect.wow_flutter_mode)
 print(SketchCassetteEffect.saturation)
 print(SketchCassetteEffect.saturation_type)
 print(SketchCassetteEffect.flanging)
+'''
 
 # Valhalla Frequency Echo
 ValhallaFreqEchoeffect = load_plugin(
@@ -55,53 +57,62 @@ ValhallaFreqEchoeffect = load_plugin(
 # dict_keys(['wetdry', 'shift', 'delay', 'sync', 'feedback', 'lowcut', 'highcut', 'stereo'])
 
 
-#ValhallaFreqEchoeffect.show_editor()
-#print(ValhallaFreqEchoeffect.wetdry)
-#print(ValhallaFreqEchoeffect.delay)
-#print(ValhallaFreqEchoeffect.sync)
-#print(ValhallaFreqEchoeffect.stereo)
+# ValhallaFreqEchoeffect.show_editor()
+# print(ValhallaFreqEchoeffect.wetdry)
+# print(ValhallaFreqEchoeffect.delay)
+# print(ValhallaFreqEchoeffect.sync)
+# print(ValhallaFreqEchoeffect.stereo)
 
+ValhallaFreqEchoeffect.sync = 1
 ValhallaFreqEchoeffect.wetdry = 0.8
 ValhallaFreqEchoeffect.delay = 0.5
-
-
+ValhallaFreqEchoeffect.stereo = 1
 
 ########################## Generation ###########################
 
 
 def create_note():
-	sample_rate = 44100
-	num_channels = 2
-	with AudioFile("Rhode_Test.wav", "w", sample_rate, num_channels) as f:
-		f.write(instrument(
-			[Message("note_on", note=60), Message("note_off", note=60, time=4)],
-			sample_rate=sample_rate,
-			duration=8,
-			num_channels=num_channels
-			)
-          )
-
-
+    sample_rate = 44100
+    num_channels = 2
+    with AudioFile("Rhode_Test.wav", "w", sample_rate, num_channels) as f:
+        f.write(instrument(
+                [Message("note_on", note=60), Message(
+                    "note_off", note=60, time=4)],
+                sample_rate=sample_rate,
+                duration=8,
+                num_channels=num_channels
+                )
+                )
 
 
 def create_wave():
-	with AudioFile('Rhode_Test.wav') as f:
+    with AudioFile('Rhode_Test.wav') as f:
 
-		# Open an audio file to write to:
-		with AudioFile('Rhode_Test_SCKE.wav', 'w', f.samplerate, f.num_channels) as o:
+        # Open an audio file to write to:
+        with AudioFile('Rhode_Test_SCKE.wav', 'w', f.samplerate, f.num_channels) as o:
 
-			# Read one second of audio at a time, until the file is empty:
-			while f.tell() < f.frames:
-				chunk = f.read(f.samplerate)
+            # Read one second of audio at a time, until the file is empty:
+            while f.tell() < f.frames:
+                chunk = f.read(f.samplerate)
 
-				# Run the audio through our pedalboard:
-				effected = SketchCassetteEffect(chunk, f.samplerate, reset=False)
-				effected_V = ValhallaFreqEchoeffect(chunk, f.samplerate, reset=False)
+                # Run the audio through our pedalboard:
+                effected = SketchCassetteEffect(
+                    chunk, f.samplerate, reset=False)
+
+                o.write(effected)
+                # time.sleep(3)
+                # o.write(effected_V)
 
 
-				o.write(effected)
-				#time.sleep(3)
-				#o.write(effected_V)
+def create_delay():
+    with AudioFile('Rhode_Test_SCKE.wav') as f:
+        with AudioFile('Rhode_Test_SCKE_Delay.wav', 'w', f.samplerate, f.num_channels) as o:
+            while f.tell() < f.frames:
+                chunk = f.read(f.samplerate)
+                effected = ValhallaFreqEchoeffect(
+                    chunk, f.samplerate, reset=False)
+
+                o.write(effected)
 
 
 # print(SketchCassetteEffect.parameters.keys())
@@ -109,8 +120,10 @@ def create_wave():
 # print(instrument.parameters.keys())
 
 def main():
-    #create_note()
-    create_wave()
+    # create_note()
+    # create_wave()
+    create_delay()
+
 
 if __name__ == "__main__":
    main()
