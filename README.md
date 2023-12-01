@@ -21,4 +21,6 @@ Errors that need resolving:
 
 1. Files with processing (test and established plugins) with freq. range in the 100k+ Hz category needed inverse fourier transform method to resolve it to a reasonable frequency range......Raw Voice File and combined are 11000 Hz...which makes more sense
 
+However...Delay processed samples still show massive frequency range even with ifft established...
+
 2. Raw MIDI generation freq range is 2000HZ which is accurate (PB-EstablishedVST.py)
