@@ -5,7 +5,7 @@ import struct
 
 ############# Regular MIDI .Wav SIGNAL ##############
 
-
+'''
 # def sample_pure_rhodes():
 obj = wave.open("PedalBoard/Test Files - .WAV/Established/Rhode.wav", "rb")
 
@@ -131,6 +131,66 @@ plt.xlim(0, t_audio_two)
 plt.show()
 
 # return signal_array_two, times_two, t_audio_two, n_samples_two
+'''
+
+####################  Plotting the delay signal after SketchCassette   ##############################
+
+obj_three = wave.open(
+    "PedalBoard/Test Files - .WAV/Established/SketchTestDelayFiles/Rhode_Test_SCKE_Delay.wav", "rb")
+
+sample_freq_three = obj_three.getframerate()
+n_samples_three = obj_three.getnframes()
+signal_wave_three = obj_three.readframes(-1)
+obj_three.close()
+
+t_audio_three = n_samples_three / sample_freq_three
+signal_array_three = np.frombuffer(signal_wave_three, dtype=np.int16)  # y
+times_three = np.linspace(0, t_audio_three, num=n_samples_three*2)  # x
+
+
+infile = "PedalBoard/Test Files - .WAV/Established/SketchTestDelayFiles/Rhode_Test_SCKE_Delay.wav"
+wav_file = wave.open(infile, 'r')
+data = wav_file.readframes(n_samples_three)
+
+t_audio_three = n_samples_three / sample_freq_three
+
+
+data = struct.unpack('{n}h'.format(n=n_samples_three*2), data)
+data = np.array(data)
+
+# converting data to numpy array
+
+data_fft = np.fft.ifft(data)
+# print(data_fft)
+
+# we are going to get the frequencies we want
+frequencies = np.abs(data_fft)
+
+print("The frequency is {} Hz".format(np.argmax(frequencies)))
+
+
+plt.subplot(2, 1, 1)
+plt.plot(data[:800000])  # this will cut off the graph at hz
+plt.title("Post SketchCassette Delay Audio wave")
+plt.subplot(2, 1, 2)
+plt.plot(frequencies)
+plt.title("Frequencies Found")
+plt.xlim(0, 25000)
+plt.show()
+
+
+plt.figure(figsize=(15, 5))
+plt.plot(times_three, signal_array_three)
+plt.title("Post SketchCassette Delay signal")
+plt.ylabel("Signal Wave")
+plt.xlabel("Time(s)")
+plt.xlim(0, t_audio_three)
+plt.show()
+
+
+
+
+
 
 ####################  Combined MIDI .WAV SIGNAL   ##############################
 
@@ -139,7 +199,7 @@ plt.show()
 
 
 # ------------------------------- Work In progress ------------------------------- #
-
+'''
 combined_signal_array = signal_array + signal_array_two
 combined_times = times + times_two
 
@@ -173,7 +233,7 @@ plt.plot(frequencies)
 plt.title("Frequencies Found")
 plt.xlim(0, 25000)
 plt.show()
-
+'''
 
 ####################  Filtered Delay  - Process  ##############################
 
