@@ -7,7 +7,7 @@ CHANNELS = 2
 # CHANNELS = 1
 
 RATE = 16000
-URL = "PedalBoard/Test Files - .WAV/Tent/"
+URL = "PedalBoard/Test Files - .WAV/Tent/NewTest/"
 
 
 p = pyaudio.PyAudio()
@@ -29,7 +29,7 @@ stream.stop_stream()
 stream.close()
 p.terminate()
 
-obj = wave.open(URL + "shri.wav", "wb")
+obj = wave.open(URL + "demoV1.wav", "wb")
 obj.setnchannels(CHANNELS)
 obj.setsampwidth(p.get_sample_size(FORMAT))
 obj.setframerate(RATE)

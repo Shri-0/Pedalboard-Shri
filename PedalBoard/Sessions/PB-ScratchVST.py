@@ -4,7 +4,7 @@ import wave
 import matplotlib.pyplot as plt
 import numpy as np
 
-
+URL = "PedalBoard/Test Files - .WAV/Tent/NewTest/"
 
 ##### CONSOLIDATE AND UPDATE URL PATHS #####
 
@@ -42,10 +42,10 @@ effect.par15 = 5.00
 
 def overWrite():
 
-	with AudioFile('test_message.wav') as f:
+	with AudioFile( URL + 'demoV1.wav') as f:
 
 		# Open an audio file to write to:
-		with AudioFile('Test_Two.wav', 'w', f.samplerate, f.num_channels) as o:
+		with AudioFile(URL + 'DemoV2.wav', 'w', f.samplerate, f.num_channels) as o:
 
 			# Read one second of audio at a time, until the file is empty:
 			while f.tell() < f.frames:
@@ -67,8 +67,9 @@ def overWrite():
 # duration - 11s
 
 
-def new():
-	obj = wave.open("Test_Two.WAV", "rb")
+#this will only be used if the number of bytes needs to be set back to 704004
+def channelByte():
+	obj = wave.open(URL + 'DemoV2.wav', "rb")
 
 
 	print("Number of channels", obj.getnchannels())  # 2
@@ -84,7 +85,7 @@ def new():
 	print(type(frames), type(frames[0]))
 	print(len(frames) / 2)  # 352000.0 frames
 
-	obj_new = wave.open("testing_change.wav", "wb")
+	obj_new = wave.open(URL + "Demo_GD_change.wav", "wb")
 
 	obj_new.setnchannels(2)
 	obj_new.setsampwidth(2)
@@ -98,7 +99,7 @@ def new():
 
 def main():
     overWrite()
-    new()
+    #channelByte()
 
 
 
