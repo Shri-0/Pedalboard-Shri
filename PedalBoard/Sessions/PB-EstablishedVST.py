@@ -106,7 +106,7 @@ def create_wave():
 
 def create_delay():
     with AudioFile(URL + "Rhode_Test_SCKE.wav") as f:
-        with AudioFile(URL + "Rhode_Test_SCKE_Delay.wav", 'w', f.samplerate, f.num_channels) as o:
+        with AudioFile(URL + "Rhode_Test_SCKE_Delay_Seperate.wav", 'w', f.samplerate, f.num_channels) as o:
             while f.tell() < f.frames:
                 chunk = f.read(f.samplerate)
                 effected = ValhallaFreqEchoeffect(
@@ -120,9 +120,9 @@ def create_delay():
 # print(instrument.parameters.keys())
 
 def main():
-    create_note()
-    create_wave()
-    time.sleep(12)
+    #create_note()
+    #create_wave()
+    #time.sleep(12)
     create_delay()
 
 
