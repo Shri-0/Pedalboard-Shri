@@ -3,11 +3,14 @@ import numpy as np
 import wave
 import struct
 
+
+URL = "PedalBoard/Test Files - .WAV/Established/SketchTestDelayFiles/"
+
 ############# Regular MIDI .Wav SIGNAL ##############
 
-'''
+
 # def sample_pure_rhodes():
-obj = wave.open("PedalBoard/Test Files - .WAV/Established/Rhode.wav", "rb")
+obj = wave.open(URL + "Rhode_Test.wav", "rb")
 
 sample_freq = obj.getframerate()
 n_samples = obj.getnframes()
@@ -16,7 +19,7 @@ signal_wave = obj.readframes(-1)
 
 obj.close()
 
-infile = "PedalBoard/Test Files - .WAV/Established/SketchTestFiles/Rhode_Test.wav"
+infile = URL + "Rhode_Test.wav"
 wav_file = wave.open(infile, 'r')
 data = wav_file.readframes(n_samples)
 t_audio = n_samples / sample_freq
@@ -79,7 +82,7 @@ plt.show()
 
 # def sample_amend_rhodes():
 
-obj_two = wave.open("PedalBoard/Test Files - .WAV/Established/SketchTestFiles/Rhode_Test_SCKE.wav", "rb")
+obj_two = wave.open(URL+ "Rhode_Test_SCKE.wav", "rb")
 
 sample_freq_two = obj_two.getframerate()
 n_samples_two = obj_two.getnframes()
@@ -91,7 +94,7 @@ signal_array_two = np.frombuffer(signal_wave_two, dtype=np.int16)  # y
 times_two = np.linspace(0, t_audio_two, num=n_samples_two*2)  # x
 
 
-infile = "PedalBoard/Test Files - .WAV/Established/SketchTestFiles/Rhode_Test_SCKE.wav"
+infile = URL + "Rhode_Test_SCKE.wav"
 wav_file = wave.open(infile, 'r')
 data = wav_file.readframes(n_samples_two)
 
@@ -131,12 +134,11 @@ plt.xlim(0, t_audio_two)
 plt.show()
 
 # return signal_array_two, times_two, t_audio_two, n_samples_two
-'''
+
 
 ####################  Plotting the delay signal after SketchCassette   ##############################
 
-obj_three = wave.open(
-    "PedalBoard/Test Files - .WAV/Established/SketchTestDelayFiles/Rhode_Test_SCKE_Delay.wav", "rb")
+obj_three = wave.open(URL + "Rhode_Test_SCKE_Delay_Seperate.wav", "rb")
 
 sample_freq_three = obj_three.getframerate()
 n_samples_three = obj_three.getnframes()
@@ -148,7 +150,7 @@ signal_array_three = np.frombuffer(signal_wave_three, dtype=np.int16)  # y
 times_three = np.linspace(0, t_audio_three, num=n_samples_three*2)  # x
 
 
-infile = "PedalBoard/Test Files - .WAV/Established/SketchTestDelayFiles/Rhode_Test_SCKE_Delay.wav"
+infile = URL + "Rhode_Test_SCKE_Delay_Seperate.wav"
 wav_file = wave.open(infile, 'r')
 data = wav_file.readframes(n_samples_three)
 

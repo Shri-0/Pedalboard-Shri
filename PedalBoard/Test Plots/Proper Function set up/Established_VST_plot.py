@@ -3,13 +3,15 @@ import numpy as np
 import wave
 import struct
 
+URL = "PedalBoard/Test Files - .WAV/Established/SketchTestDelayFiles/"
+
 ############# Regular MIDI .Wav SIGNAL ##############
 
 #class Pure:
 
 def sample_pure_rhodes(signal_array, times, n_samples):
 
-	obj = wave.open("PedalBoard/Test Files - .WAV/Established/SketchTestFiles/Rhode_Test.wav", "rb")
+	obj = wave.open(URL + "Rhode_Test.wav", "rb")
 
 	sample_freq = obj.getframerate()
 	n_samples = obj.getnframes()
@@ -18,7 +20,7 @@ def sample_pure_rhodes(signal_array, times, n_samples):
 
 	obj.close()
 
-	infile = "PedalBoard/Test Files - .WAV/Established/SketchTestFiles/Rhode_Test.wav"
+	infile = URL + "Rhode_Test.wav"
 	wav_file = wave.open(infile, 'r')
 	data = wav_file.readframes(n_samples)
 	t_audio = n_samples / sample_freq
@@ -53,14 +55,11 @@ def sample_pure_rhodes(signal_array, times, n_samples):
 				# print(freeze/time)
 
 
-
-
 				# data_fft[1] will contain frequency parts of 1Hz
 				# data_fft[2] will contain frequency part of 2Hz
 			#print("The frequency is {} Hz".format(np.argmax(frequencies)))
 
 			#return signal_array
-
 
 
 
@@ -82,16 +81,16 @@ def sample_pure_rhodes(signal_array, times, n_samples):
 	plt.xlim(0, t_audio)
 	plt.show()
 
-	return n_samples, times, signal_array
+	#return n_samples, times, signal_array
 
 
 ####################  Processed MIDI .WAV SIGNAL   ##############################
 
 #class Half:
 
-def sample_amend_rhodes(signal_array_two, times_two, t_audio_two):
+def sample_amend_rhodes(signal_array_two, times_two, n_samples_two):
 
-	obj_two = wave.open("PedalBoard/Test Files - .WAV/Established/SketchTestFiles/Rhode_Test_SCKE.wav", "rb")
+	obj_two = wave.open(URL + "Rhode_Test_SCKE.wav", "rb")
 
 	sample_freq_two = obj_two.getframerate()
 	n_samples_two = obj_two.getnframes()
@@ -102,7 +101,7 @@ def sample_amend_rhodes(signal_array_two, times_two, t_audio_two):
 	signal_array_two = np.frombuffer(signal_wave_two, dtype=np.int16)  # y
 	times_two = np.linspace(0, t_audio_two, num=n_samples_two*2)  # x
 
-	infile = "PedalBoard/Test Files - .WAV/Established/SketchTestFiles/Rhode_Test_SCKE.wav"
+	infile = URL + "Rhode_Test_SCKE.wav"
 	wav_file = wave.open(infile, 'r')
 	data = wav_file.readframes(n_samples_two)
 
@@ -123,7 +122,7 @@ def sample_amend_rhodes(signal_array_two, times_two, t_audio_two):
 	#print("The frequency is {} Hz".format(np.argmax(frequencies)))
 
 
-	'''
+
 	plt.subplot(2, 1, 1)
 	plt.plot(data[:500000])  # this will cut off the graph at hz
 	plt.title("Post SketchCassette Audio wave")
@@ -141,9 +140,63 @@ def sample_amend_rhodes(signal_array_two, times_two, t_audio_two):
 	plt.xlabel("Time(s)")
 	plt.xlim(0, t_audio_two)
 	plt.show()
-	'''
 
-	return signal_array_two, times_two, t_audio_two, n_samples_two
+
+	#return signal_array_two, times_two, t_audio_two, n_samples_two
+
+
+####################  Processed MIDI .WAV SIGNAL + Sketch + Delay  ##############################
+
+def sample_amend_rhodes_delay(signal_array_two, times_two, n_samples_two):
+
+	obj_two = wave.open(URL + "Rhode_Test_SCKE_Delay_Seperate.wav", "rb")
+
+	sample_freq_two = obj_two.getframerate()
+	n_samples_two = obj_two.getnframes()
+	signal_wave_two = obj_two.readframes(-1)
+	obj_two.close()
+
+	t_audio_two = n_samples_two / sample_freq_two
+	signal_array_two = np.frombuffer(signal_wave_two, dtype=np.int16)  # y
+	times_two = np.linspace(0, t_audio_two, num=n_samples_two*2)  # x
+
+	infile = URL + "Rhode_Test_SCKE_Delay_Seperate.wav"
+	wav_file = wave.open(infile, 'r')
+	data = wav_file.readframes(n_samples_two)
+
+	t_audio_two = n_samples_two / sample_freq_two
+
+	data = struct.unpack('{n}h'.format(n=n_samples_two*2), data)
+	data = np.array(data)
+
+	# converting data to numpy array
+
+	data_fft = np.fft.fft(data)
+	# print(data_fft)
+
+	# we are going to get the frequencies we want
+	frequencies = np.abs(data_fft)
+
+	# print("The frequency is {} Hz".format(np.argmax(frequencies)))
+
+	plt.subplot(2, 1, 1)
+	plt.plot(data[:500000])  # this will cut off the graph at hz
+	plt.title("Post SketchCassette Audio wave")
+	plt.subplot(2, 1, 2)
+	plt.plot(frequencies)
+	plt.title("Frequencies Found")
+	plt.xlim(0, 25000)
+	plt.show()
+
+	plt.figure(figsize=(15, 5))
+	plt.plot(times_two, signal_array_two)
+	plt.title("Post SketchCassette signal")
+	plt.ylabel("Signal Wave")
+	plt.xlabel("Time(s)")
+	plt.xlim(0, t_audio_two)
+	plt.show()
+
+
 
 ####################  Combined MIDI .WAV SIGNAL   ##############################
 
@@ -271,9 +324,13 @@ def combine(signal_array, times, n_samples):
 
 
 def main():
-    #sample_pure_rhodes()
+    sample_pure_rhodes(signal_array=1, times=1, n_samples=1)
+    sample_amend_rhodes(signal_array_two=1, times_two=1, n_samples_two=1)
+    sample_amend_rhodes_delay(signal_array_two=1, times_two=1, n_samples_two=1)
+
+
 	#combine(signal_array, times, n_samples, signal_array_two, t_audio_two,times_two)
-	combine()
+	#combine()
 
 if __name__ == "__main__":
    main()

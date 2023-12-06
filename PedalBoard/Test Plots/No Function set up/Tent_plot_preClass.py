@@ -6,9 +6,11 @@ import struct
 
 # obj = wave.open("shri_new.wav", "rb")
 
+URL = "PedalBoard/Test Files - .WAV/Tent/Spare/"
+
 ############## WET VOICE SIGNAL ##############
 
-obj = wave.open("PedalBoard/Test Files - .WAV/Tent/testing_change.wav", "rb")
+obj = wave.open(URL + "testing_change.wav", "rb")
 
 sample_freq = obj.getframerate()
 n_samples = obj.getnframes()
@@ -17,7 +19,7 @@ signal_wave = obj.readframes(-1)
 
 obj.close()
 
-infile = "PedalBoard/Test Files - .WAV/Tent/testing_change.wav"
+infile = URL + "testing_change.wav"
 wav_file = wave.open(infile, 'r')
 data = wav_file.readframes(n_samples)
 
@@ -74,7 +76,7 @@ plt.show()
 
 ####################  DRY VOICE SIGNAL   ##############################
 
-obj_two = wave.open("PedalBoard/Test Files - .WAV/Tent/test_message.wav", "rb")
+obj_two = wave.open(URL + "test_message.wav", "rb")
 
 sample_freq_two = obj_two.getframerate()
 n_samples_two = obj_two.getnframes()
@@ -86,7 +88,7 @@ signal_array_two = np.frombuffer(signal_wave_two, dtype=np.int16)  # y
 times_two = np.linspace(0, t_audio_two, num=n_samples_two*2)  # x
 
 
-infile = "PedalBoard/Test Files - .WAV/Tent/test_message.wav"
+infile = URL + "test_message.wav"
 wav_file = wave.open(infile, 'r')
 data = wav_file.readframes(n_samples_two)
 
@@ -162,4 +164,3 @@ plt.show()
 
 
 ####### Combination ##########
-
