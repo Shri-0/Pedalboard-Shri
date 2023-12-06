@@ -1,9 +1,9 @@
 from pedalboard import Pedalboard, Chorus, Reverb, Delay, load_plugin
 from pedalboard.io import AudioFile
 from mido import Message
-import wave
 import time
-import numpy as np
+#import wave
+#import numpy as np
 
 
 # I am going to see if I can replicate the same results in an actual logic session using the same parameters here

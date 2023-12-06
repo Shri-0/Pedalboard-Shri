@@ -1,8 +1,8 @@
 from pedalboard import Pedalboard, Chorus, Reverb, Delay, load_plugin
 from pedalboard.io import AudioFile
 import wave
-import matplotlib.pyplot as plt
-import numpy as np
+#import matplotlib.pyplot as plt
+#import numpy as np
 
 URL = "PedalBoard/Test Files - .WAV/Tent/NewTest/"
 

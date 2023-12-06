@@ -1,7 +1,7 @@
 import math
 import soundfile as sf
 import numpy as np
-import librosa
+#import librosa
 
 
 data, samplerate = sf.read('sineAmend.wav')
