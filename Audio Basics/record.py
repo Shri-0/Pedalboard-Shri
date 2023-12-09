@@ -29,7 +29,10 @@ stream.stop_stream()
 stream.close()
 p.terminate()
 
-obj = wave.open(URL + "demoV1.wav", "wb")
+#obj = wave.open(URL + "demoV1.wav", "wb")
+
+obj = wave.open(URL + "demo_dec_2023_v1.wav", "wb")
+
 obj.setnchannels(CHANNELS)
 obj.setsampwidth(p.get_sample_size(FORMAT))
 obj.setframerate(RATE)

@@ -36,16 +36,23 @@ effect.par13 = 5.00
 effect.par14 = 5.00
 effect.par15 = 5.00
 
+REGULAR = 'demoV1.wav'
+REGPROCESSDEMO = 'DemoV2.wav'
+
+DEMO = "demo_dec_2023_v1.wav"
+POSTPROCESSDEMO = "demo_dec_2023_v2.wav"
+
+
 # file = "sine.wav"
 
 # effected = effect(file)
 
 def overWrite():
 
-	with AudioFile( URL + 'demoV1.wav') as f:
+	with AudioFile(URL + DEMO) as f:
 
 		# Open an audio file to write to:
-		with AudioFile(URL + 'DemoV2.wav', 'w', f.samplerate, f.num_channels) as o:
+		with AudioFile(URL + POSTPROCESSDEMO, 'w', f.samplerate, f.num_channels) as o:
 
 			# Read one second of audio at a time, until the file is empty:
 			while f.tell() < f.frames:
@@ -68,8 +75,11 @@ def overWrite():
 
 
 #this will only be used if the number of bytes needs to be set back to 704004
+
+
+
 def channelByte():
-	obj = wave.open(URL + 'DemoV2.wav', "rb")
+	obj = wave.open(URL + POSTPROCESSDEMO, "rb")
 
 
 	print("Number of channels", obj.getnchannels())  # 2
@@ -85,7 +95,12 @@ def channelByte():
 	print(type(frames), type(frames[0]))
 	print(len(frames) / 2)  # 352000.0 frames
 
-	obj_new = wave.open(URL + "Demo_GD_change.wav", "wb")
+	READJUSTPROCESSDEMO = "demo_dec_2023_revert.wav"
+
+
+	#obj_new = wave.open(URL + "Demo_GD_change.wav", "wb")
+	obj_new = wave.open(URL + READJUSTPROCESSDEMO, "wb")
+
 
 	obj_new.setnchannels(2)
 	obj_new.setsampwidth(2)
@@ -98,8 +113,8 @@ def channelByte():
 
 
 def main():
-    overWrite()
-    #channelByte()
+    #overWrite()
+    channelByte()
 
 
 
