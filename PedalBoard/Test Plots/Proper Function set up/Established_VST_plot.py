@@ -77,7 +77,10 @@ def sample_pure_rhodes(signal_array, times, n_samples):
     plt.xlim(0, t_audio)
     plt.show()
 
-    return n_samples, times, signal_array
+
+    class preSignals:
+	    def returnTheFirstDataElements():
+		    return n_samples, times, signal_array
 
 
 ####################  Processed MIDI .WAV SIGNAL   ##############################
@@ -133,7 +136,10 @@ def sample_amend_rhodes(signal_array_two, times_two, n_samples_two):
     plt.xlim(0, t_audio_two)
     plt.show()
 
-    return signal_array_two, times_two, t_audio_two, n_samples_two
+
+    class postSignals:
+	    def returnTheSecondDataElements():
+    		return signal_array_two, times_two, t_audio_two, n_samples_two
 
 
 ####################  Processed MIDI .WAV SIGNAL + Sketch + Delay  ##############################

@@ -74,7 +74,7 @@ def postProcess():
 	plt.show()
 
 	class postSignals:
-			def returnTheFirstDataElements():
+			def returnTheSecondDataElements():
 				return n_samples, times, t_audio
 
 
@@ -141,15 +141,17 @@ def preProcess():
 
 
 
+
 ####################  Return Example   ##############################
+
+'''
 class num:
 	def returnTheseValues(x, y):
 		return x + y
 
 number = num()
-
-####################  Combined   ##############################
-
+'''
+####################  Combined   ###############################
 
 '''
 def combined():
