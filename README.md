@@ -7,6 +7,6 @@
 Current Objectives:
 A. Enhance scripts for multi-processed .WAV files originally generated from VST Instruments
 B. Fix plot parameters for .WAV files before and after processing
-C. Restructure Repo for others to eventually use
-D. Record audio from PedalBoard livestreaming feature...need to fix livestreaming component
+C. Restructure Repo for others to eventually use (Construction still ongoing)
+D. Need to fix livestreaming component
 ---------------
