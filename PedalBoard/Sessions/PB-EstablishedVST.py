@@ -6,9 +6,6 @@ import time
 #import numpy as np
 
 
-# I am going to see if I can replicate the same results in an actual logic session using the same parameters here
-
-
 # load an instrument from the VSt Library
 instrument = load_plugin(
     "/Library/Audio/Plug-Ins/Components/Addictive Keys.component")
@@ -17,8 +14,6 @@ instrument = load_plugin(
 
 # dict_keys(['modulation_x', 'ch1_level', 'ch2_level', 'ch3_level', 'ch1_sendfx1', 'ch1_sendfx2', 'ch2_sendfx1', 'ch2_sendfx2', 'ch3_sendfx1', 'ch3_sendfx2', 'fx1_level', 'fx2_level', 'master_level', 'master_filtlo', 'master_filthi'])
 
-
-# Wrapping established 3rd party C++ plugins and processing audio files through here through there
 
 # SketchCassette
 SketchCassetteEffect = load_plugin(
