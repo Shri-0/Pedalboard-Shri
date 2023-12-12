@@ -56,7 +56,7 @@ def sample_pure_rhodes(signal_array, times, n_samples):
 
     # data_fft[1] will contain frequency parts of 1Hz
     # data_fft[2] will contain frequency part of 2Hz
-    print("The frequency is {} Hz".format(np.argmax(frequencies)))
+    print("The main frequency is {} Hz".format(np.argmax(frequencies)))
 
     # return signal_array
 
@@ -117,7 +117,7 @@ def sample_amend_rhodes(signal_array_two, times_two, n_samples_two):
     # we are going to get the frequencies we want
     frequencies = np.abs(data_fft)
 
-    print("The frequency is {} Hz".format(np.argmax(frequencies)))
+    print("The main frequency is {} Hz".format(np.argmax(frequencies)))
 
     plt.subplot(2, 1, 1)
     plt.plot(data[:500000])  # this will cut off the graph at hz
@@ -174,7 +174,7 @@ def sample_amend_rhodes_delay(signal_array_two, times_two, n_samples_two):
     # we are going to get the frequencies we want
     frequencies = np.abs(data_fft)
 
-    print("The frequency is {} Hz".format(np.argmax(frequencies)))
+    print("The main frequency is {} Hz".format(np.argmax(frequencies)))
 
     plt.subplot(2, 1, 1)
     plt.plot(data[:500000])  # this will cut off the graph at hz
@@ -314,9 +314,9 @@ def combine(signal_array, times, n_samples):
 
 
 def main():
-    sample_pure_rhodes(signal_array=1, times=1, n_samples=1)
-    sample_amend_rhodes(signal_array_two=1, times_two=1, n_samples_two=1)
-    sample_amend_rhodes_delay(signal_array_two=1, times_two=1, n_samples_two=1)
+    sample_pure_rhodes(1,1, 1)
+    sample_amend_rhodes(1, 1, 1)
+    sample_amend_rhodes_delay(1, 1, 1)
 
     # combine(signal_array, times, n_samples, signal_array_two, t_audio_two,times_two)
     # combine()
