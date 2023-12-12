@@ -1,25 +1,15 @@
 from pedalboard import Pedalboard, Chorus, Compressor, Delay, Gain, Reverb, Phaser, load_plugin, Convolution
 from pedalboard.io import AudioStream
-import wave
-import pyaudio
+#import wave
+#import pyaudio
 
 
 input_device_name = AudioStream.input_device_names[1]
 output_device_name = AudioStream.output_device_names[1]
 
-'''
-FRAMES_PER_BUFFER = 3200
-FORMAT = pyaudio.paInt16
-CHANNELS = 2
-# CHANNELS = 1
 
-RATE = 16000
-'''
-
-
-
-def liveAudio():
-	with AudioStream(
+#def liveAudio():
+with AudioStream(
 		input_device_name, output_device_name
 
 	) as stream:
@@ -29,7 +19,49 @@ def liveAudio():
 			Reverb(room_size=0.25),
 		]
                               )
-	input("Press enter to stop streaming...")
+input("Press enter to stop streaming...")
+
+
+print(input_device_name)
+print(output_device_name)
+
+
+
+
+
+
+
+'''
+def main():
+    liveAudio()
+
+
+if __name__ == "__main__":
+    main()
+
+
+'''
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''
+FRAMES_PER_BUFFER = 3200
+FORMAT = pyaudio.paInt16
+CHANNELS = 2
+# CHANNELS = 1
+
+RATE = 16000
+'''
 
 
 '''
@@ -48,33 +80,9 @@ def liveAudio():
 	obj.setframerate(RATE)
 	obj.writeframes(b"".join(frames))
 	obj.close()
- 
+
+
 '''
-
-
-
-print(input_device_name)
-print(output_device_name)
-
-
-def main():
-    liveAudio()
-
-
-if __name__ == "__main__":
-    main()
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
