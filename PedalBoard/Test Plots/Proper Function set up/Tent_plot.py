@@ -73,10 +73,11 @@ def postProcess():
 	plt.xlim(0, t_audio)
 	plt.show()
 
+	'''
 	class postSignals:
 			def returnTheSecondDataElements():
 				return n_samples, times, t_audio
-
+	'''
 
 
 
@@ -134,11 +135,11 @@ def preProcess():
 	plt.xlim(0, t_audio_two)
 	plt.show()
 
-
+	'''
 	class preSignals:
 		def returnTheFirstDataElements():
 			return signal_array_two, times_two, t_audio_two
-
+	'''
 
 
 

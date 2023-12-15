@@ -3,7 +3,7 @@ import numpy as np
 import wave
 import struct
 
-
+'''
 # obj = wave.open("shri_new.wav", "rb")
 
 ############## WET VOICE SIGNAL ##############
@@ -165,3 +165,4 @@ plt.show()
 
 
 ####################  Established Vst POST   ##############################
+'''
