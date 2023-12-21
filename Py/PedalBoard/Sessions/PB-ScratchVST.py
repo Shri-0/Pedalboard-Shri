@@ -4,7 +4,7 @@ import wave
 #import matplotlib.pyplot as plt
 #import numpy as np
 
-URL = "PedalBoard/Test Files - .WAV/Tent/NewTest/"
+URL = "Py/PedalBoard/Test Files - .WAV/Tent/NewTest/"
 
 ##### CONSOLIDATE AND UPDATE URL PATHS #####
 

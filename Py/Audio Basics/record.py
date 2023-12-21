@@ -7,7 +7,7 @@ CHANNELS = 2
 # CHANNELS = 1
 
 RATE = 16000
-URL = "PedalBoard/Test Files - .WAV/Tent/NewTest/"
+URL = "Py/PedalBoard/Test Files - .WAV/Tent/NewTest/"
 
 
 p = pyaudio.PyAudio()

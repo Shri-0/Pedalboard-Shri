@@ -3,7 +3,7 @@ import numpy as np
 import wave
 import struct
 
-URL = "PedalBoard/Test Files - .WAV/Established/SketchTestDelayFiles/"
+URL = "Py/PedalBoard/Test Files - .WAV/Established/SketchTestDelayFiles/"
 
 ############# Regular MIDI .Wav SIGNAL ##############
 

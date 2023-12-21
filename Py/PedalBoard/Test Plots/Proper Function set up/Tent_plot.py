@@ -8,6 +8,8 @@ import struct
 
 ############## WET VOICE SIGNAL ##############
 
+URL = ""
+
 def postProcess():
 
 	obj = wave.open("PedalBoard/Test Files - .WAV/Tent/Spare/testing_change.wav", "rb")
