@@ -8,11 +8,11 @@ import struct
 
 ############## WET VOICE SIGNAL ##############
 
-URL = ""
+URL = "Py/PedalBoard/Test Files - .WAV/Tent/Spare/"
 
 def postProcess():
 
-	obj = wave.open("PedalBoard/Test Files - .WAV/Tent/Spare/testing_change.wav", "rb")
+	obj = wave.open(URL+ "testing_change.wav", "rb")
 
 	sample_freq = obj.getframerate()
 	n_samples = obj.getnframes()
@@ -21,7 +21,7 @@ def postProcess():
 
 	obj.close()
 
-	infile = "PedalBoard/Test Files - .WAV/Tent/Spare/testing_change.wav"
+	infile = URL + "testing_change.wav"
 	wav_file = wave.open(infile, 'r')
 	data = wav_file.readframes(n_samples)
 
@@ -87,7 +87,7 @@ def postProcess():
 
 def preProcess():
 
-	obj_two = wave.open("PedalBoard/Test Files - .WAV/Tent/Spare/test_message.wav", "rb")
+	obj_two = wave.open(URL + "test_message.wav", "rb")
 
 	sample_freq_two = obj_two.getframerate()
 	n_samples_two = obj_two.getnframes()
@@ -99,7 +99,7 @@ def preProcess():
 	times_two = np.linspace(0, t_audio_two, num=n_samples_two*2)  # x
 
 
-	infile = "PedalBoard/Test Files - .WAV/Tent/Spare/test_message.wav"
+	infile = URL + "test_message.wav"
 	wav_file = wave.open(infile, 'r')
 	data = wav_file.readframes(n_samples_two)
 
